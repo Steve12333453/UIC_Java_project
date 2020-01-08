@@ -1,0 +1,15 @@
+
+public class ViewHistory extends View<ControllerHistory>{
+
+	public ViewHistory(FinanceOffice m, ControllerHistory c) {
+		super(m, c);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

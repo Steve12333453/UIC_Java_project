@@ -1,0 +1,16 @@
+
+public class ControllerGetDebt extends Controller{
+
+	public ControllerGetDebt(FinanceOffice m) {
+		super(m);
+		// TODO Auto-generated constructor stub
+	}
+	public String getDebt(String name) {
+		try {
+			return String.valueOf(m.getDebt(name));
+		} catch (UnknownPayerException e) {
+			// TODO Auto-generated catch block
+			return e.getMessage();
+		}
+	}
+}

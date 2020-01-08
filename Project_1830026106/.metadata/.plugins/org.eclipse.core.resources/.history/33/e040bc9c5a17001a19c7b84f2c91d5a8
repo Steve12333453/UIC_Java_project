@@ -1,0 +1,8 @@
+
+public class Controller {
+	protected FinanceOffice m;
+
+	public Controller() {
+		this.m = m;
+	}
+}

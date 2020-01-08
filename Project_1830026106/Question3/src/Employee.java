@@ -1,0 +1,54 @@
+
+public class Employee extends Person {
+
+	public Employee(String name, int salary) throws NegativeSalaryException {
+		super(name, -salary);
+		// TODO Auto-generated constructor stub
+		if (salary < 0) {
+			throw new NegativeSalaryException("An employee cannot have a negative salary");
+		}
+	}
+
+	/**
+	 * decreases the current salary of the employee by the amount of money given as
+	 * argument to the method
+	 */
+	@Override
+	public void pay(int amount) throws NegativeSalaryException {
+		// TODO Auto-generated method stub
+		int overpay = amount + this.getDebt();
+		if (overpay > 0) {
+			throw new NegativeSalaryException("An employee cannot be overpaid by " + overpay + " yuans!");
+		} else {
+			this.setDebt(amount + this.getDebt());
+		}
+	}
+	public void pay(int amount,int salary){
+		int overpay = amount + this.getDebt();
+		this.setDebt(overpay);
+	}
+	public static void testEmployee() {
+		try {
+			Employee e1=new Employee("Philippe", -1000);
+		} catch (NegativeSalaryException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage().equalsIgnoreCase("An employee cannot have a negative salary"));
+		}
+		try {
+			Employee e2=new Employee("Kirin", 10000);
+			e2.pay(1000);
+			System.out.println(e2.getDebt()==-9000);
+		} catch (NegativeSalaryException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		try {
+			Employee e3=new Employee("Steve", 1000);
+			e3.pay(2000);
+		} catch (NegativeSalaryException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage().equalsIgnoreCase("An employee cannot be overpaid by 1000 yuans!"));
+		}
+		
+	}
+}

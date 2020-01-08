@@ -1,0 +1,24 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public abstract class View<T extends Controller> extends JFrame implements ModelListener {
+	protected FinanceOffice m;
+	protected T c;
+
+	public View(FinanceOffice m, T c) {
+		this.m = m;
+		this.c = c;
+		JFrame f = new JFrame("View Simple");
+		f.setSize(400, 300);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		m.addListener(m);
+		String str = String.valueOf(m.totalDebt());
+		JLabel l = new JLabel("total debt: " + str);
+		f.add(l);
+		f.setVisible(true);
+	}
+
+	@Override
+	public abstract void update();
+
+}

@@ -1,0 +1,8 @@
+
+public class ControllerSimple extends Controller {
+	private FinanceOffice m;
+
+	public ControllerSimple(FinanceOffice m) {
+		this.m = m;
+	}
+}

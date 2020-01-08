@@ -1,0 +1,32 @@
+import java.awt.HeadlessException;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class ViewSimple extends JFrame implements ModelListener {
+	private FinanceOffice m;
+	private ControllerSimple c;
+	private JLabel label;
+
+	public ViewSimple(FinanceOffice m, ControllerSimple c) throws HeadlessException {
+		super();
+		this.m = m;
+		this.c = c;
+		this.m = m;
+		this.c = c;
+		JFrame f = new JFrame("View Simple");
+		f.setSize(400, 300);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		m.addListener(m);
+		String str = String.valueOf(m.totalDebt());
+		JLabel l = new JLabel("total debt: " + str);
+		f.add(l);
+		f.setVisible(true);
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+
+	}
+}

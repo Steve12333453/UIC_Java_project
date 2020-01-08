@@ -1,0 +1,15 @@
+
+public class ViewPay extends View<ControllerPay>{
+
+	public ViewPay(FinanceOffice m, ControllerPay c) {
+		super(m, c);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,41 @@
+import java.awt.Button;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+public class ViewGetDebt extends View<ControllerGetDebt> {
+	private JTextField t;
+
+	public ViewGetDebt(FinanceOffice m, ControllerGetDebt c) {
+		super(m, c);
+		// TODO Auto-generated constructor stub
+		t=new JTextField("Type a payer name here: ");
+		this.setTitle("View Debt");
+		Button b=new Button("Tell me the debt");
+		this.setLayout(new GridLayout(2, 1));
+		this.setSize(400, 300);
+		this.setLocation(300,300);
+		b.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String s1=t.getText();
+				String s2=c.getDebt(s1);
+				JOptionPane.showMessageDialog(null, s2, "Message", JOptionPane.PLAIN_MESSAGE);
+			}
+		});
+		this.add(t);
+		this.add(b);
+		this.setVisible(true);
+	}
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,142 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class CLI {
+	private static Scanner input = new Scanner(System.in);
+
+	// the method used to tell the user to type some text
+	private static String readLine(String str) {
+		System.out.print(str);
+		str = input.nextLine();
+		return str;
+	}
+
+	// the method used to tell the user to type some integer string
+	private static int readPostInt(String str) {
+		int a = 0;
+		while (true) {
+			System.out.print(str);
+			str = input.nextLine();
+			try {
+				a = Integer.parseInt(str);
+			} catch (InputMismatchException e) {
+				System.out.println("You must type an integer!");
+				break;
+			} catch (NumberFormatException e) {
+				System.out.println("You must type an integer!");
+				break;
+			}
+			if (a < 0) {
+				System.out.println("Positive integers only!");
+				str = input.nextLine();
+				a = 0;
+			}
+			if (a == 0) {
+
+			} else {
+				break;
+			}
+		}
+		return a;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		boolean flag = true;
+		FinanceOffice f = new FinanceOffice("UIC FO");
+		while (flag) {
+
+			int i = readPostInt("Type an action(total:1 add:2 get:3 give:4 take:5 quit:6): ");
+			switch (i) {
+			case 1:
+				System.out.println("Total amount of debt:" + f.totalDebt());
+				break;
+			case 2:
+				//Action 2: adding a new payer to the finance office
+				int a = readPostInt("Enter the payer type(student:1 employee:2 faculty member:3): ");
+				switch (a) {
+				case 1:
+					String studentName = readLine("Enter the name of the payer:");
+					int money = readPostInt("Enter the initial amount of money: ");
+					Student s = new Student(studentName, money);
+					f.addPayer(s);
+					System.out.println(
+							"Student " + "\"" + s.getName() + "\"" + " with " + s.getDebt() + " yuans of debt added");
+					break;
+				case 2:
+					String EmployeeName = readLine("Enter the name of the payer: ");
+					int salary = readPostInt("Enter the initial amount of money: ");
+					Employee e;
+					try {
+						e = new Employee(EmployeeName, salary);
+						f.addPayer(e);
+						System.out.println("Employee " + "\"" + e.getName() + "\"" + " with " + (-e.getDebt())
+								+ " yuans of salary added");
+					} catch (NegativeSalaryException e1) {
+						// TODO Auto-generated catch block
+						System.out.println(e1.getMessage());
+					}
+					break;
+				case 3:
+					String facultyName = readLine("Enter the name of the payer: ");
+					int facultySalary = readPostInt("Enter the initial amount of money: ");
+					FacultyMember fm = new FacultyMember(facultyName, facultySalary);
+					f.addPayer(fm);
+					System.out.println("Faculty member " + "\"" + fm.getName() + "\"" + " with " + (-fm.getDebt())
+							+ " yuans of salary added");
+					break;
+				default:
+					System.out.println("Unknown type of payer!");
+					break;
+				}
+			case 3:
+				//Action 3:Listening the amount of debt for a given payer
+				String b = readLine("Enter the name of the payer:");
+				try {
+					System.out.println(b + " has " + f.getDebt(b) + " yuans of debt");
+				} catch (UnknownPayerException e1) {
+					// TODO Auto-generated catch block
+					System.out.println(e1.getMessage());
+				}
+				break;
+			case 4:
+				//Action 4: paying money to a given payer
+				String c=readLine("Enter the name of the payer: ");
+				int payMoney=readPostInt("Enter the amount of money: ");
+				try {
+					f.pay(c, payMoney);
+				} catch (NegativeSalaryException e1) {
+					// TODO Auto-generated catch block
+					System.out.println(e1.getMessage());
+				} catch (UnknownPayerException e1) {
+					// TODO Auto-generated catch block
+					System.out.println(e1.getMessage());
+				}
+				break;
+			case 5:
+				//Action 5: taking money from a given payer
+				String d=readLine("Enter the name of the payer: ");
+				int pay=readPostInt("Enter the amount of money: ");
+				try {
+					f.pay(d, pay);
+				} catch (NegativeSalaryException e1) {
+					// TODO Auto-generated catch block
+					System.out.println(e1.getMessage());
+				} catch (UnknownPayerException e1) {
+					// TODO Auto-generated catch block
+					System.out.println(e1.getMessage());
+				}
+				break;
+			case 6:
+				flag = false;
+				System.out.println("Goobye!");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Unknown action!");
+				break;
+			}
+		}
+	}
+
+}

@@ -1,0 +1,46 @@
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
+public class ViewCreate extends View<ControllerCreate>{
+	private JTextField t1;
+	private JTextField t2;
+	private JComboBox<String> cb;//the combo box cb (where the user can select one option from a menu) and a button. 
+	public ViewCreate(FinanceOffice m, ControllerCreate c) {
+		super(m, c);
+		// TODO Auto-generated constructor stub
+		this.setTitle("View Create");
+		this.setSize(400, 400);
+		t1=new JTextField("Type a new payer name here");
+		t2=new JTextField("Type an amount of money here");
+		cb=new JComboBox<String>(new String[] {"Student","Employee","Faculty Member"});
+		JButton b=new JButton("Pay");
+		this.setLayout(new GridLayout(4, 1));
+		this.add(t1);
+		this.add(t2);
+		this.add(cb);
+		this.add(b);
+		b.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String payerName=t1.getText();
+				String amountText=t2.getText();
+				int type=cb.getSelectedIndex();
+				String result=
+			}
+		});
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,30 @@
+
+public class ControllerCreate extends Controller{
+
+	public ControllerCreate(FinanceOffice m) {
+		super(m);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public String create(String name,String amount,int type) {
+		try {
+			int money=Integer.parseInt(amount);
+			Payer payer;
+			switch(type) {
+			case 0:
+				payer=new Student(name,money);
+				break;
+			case 1:
+				payer=new Employee(name, money);
+				break;
+			case 2:
+				payer=new FacultyMember(name, money);
+				break;
+			}
+			m.addPayer(payer);
+			return "";
+		}catch(Exception e) {
+			return e.getMessage();
+		}
+	}
+}

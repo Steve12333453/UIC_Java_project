@@ -1,0 +1,10 @@
+
+public class ControllerGetDebt extends Controller {
+	public ControllerGetDebt(FinanceOffice m) {
+		this.m = m;
+	}
+
+	public String getDebt(String name) {
+		return name;
+	}
+}

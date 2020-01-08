@@ -1,0 +1,17 @@
+import javax.swing.JTextField;
+
+public class ViewPay extends View<ControllerPay>{
+	private JTextField t1;
+	
+	public ViewPay(FinanceOffice m, ControllerPay c) {
+		super(m, c);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

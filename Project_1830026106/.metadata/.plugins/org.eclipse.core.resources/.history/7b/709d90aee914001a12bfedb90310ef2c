@@ -1,0 +1,103 @@
+import java.util.ArrayList;
+
+public class FinanceOffice {
+	private String name;
+	private ArrayList<Payer> payers;
+
+	public FinanceOffice(String name) {
+		this.name = name;
+		this.payers = new ArrayList<Payer>();
+	}
+	
+	public void addPayer(Payer payer) {
+		payers.add(payer);
+	}
+
+	// calculate the total amount of debt of all the payers of the finance office
+	public int totalDebt() {
+		int total = 0;
+		for (Payer payer : payers) {
+			total = total + payer.getDebt();
+		}
+		return total;
+	}
+
+	// calculate the current amount of debt for this payer
+	public int getDebt(String name) throws UnknownPayerException {
+		for (Payer payer : payers) {
+			if (payer.getName().equalsIgnoreCase(name)) {
+				return payer.getDebt();
+			}
+		}
+		throw new UnknownPayerException("Payer " + name + " unknown");
+	}
+
+	/**
+	 * Payer pay that amount of money to that payer
+	 * 
+	 * @param name
+	 * @param amount
+	 * @throws NegativeSalaryException
+	 * @throws UnknownPayerException
+	 */
+	public void pay(String name, int amount) throws NegativeSalaryException, UnknownPayerException {
+		boolean flag=true;
+		for (Payer payer : payers) {
+			if (payer.getName().equalsIgnoreCase(name)) {
+				payer.pay(amount);
+				flag=false;
+			}
+		}
+		if(flag) {
+			throw new UnknownPayerException("Payer "+name+" Unknown");
+		}
+	}
+
+	public static void testFinanceOffice()  {
+		Student s=new Student("Steve",1000);
+		FinanceOffice fo=new FinanceOffice("UIC FO");
+		Employee e;
+		try {
+			e = new Employee("Philippe", 1000);
+			fo.addPayer(e);
+			try {
+				System.out.println(fo.getDebt("Philippe")==-1000);
+			} catch (UnknownPayerException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1.getMessage());
+			}
+			try {
+				fo.pay("Philippe", 500);
+				System.out.println(fo.getDebt("Philippe")==-500);
+			} catch (UnknownPayerException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1.getMessage());
+			}
+			try {
+				fo.pay("Philippe", 1000);
+			} catch (UnknownPayerException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1.getMessage().equalsIgnoreCase("An employee cannot be overpaid by 500 yuans!"));
+			}
+		} catch (NegativeSalaryException e1) {
+			// TODO Auto-generated catch block
+			System.out.println(e1.getMessage().equalsIgnoreCase("An employee cannot be overpaid by 500 yuans!"));
+		}
+		FacultyMember fm;
+		try {
+			fm = new FacultyMember("Kirin", 1000);
+			fo.addPayer(fm);
+			try {
+				fo.pay("Kirin", 2000);
+				System.out.println(fo.getDebt("Kirin")==1000);
+			} catch (UnknownPayerException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1.getMessage());
+			}
+		} catch (NegativeSalaryException e1) {
+			// TODO Auto-generated catch block
+			System.out.println(e1.getMessage());
+		}
+
+	}
+}

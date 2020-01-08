@@ -1,0 +1,22 @@
+import java.awt.GridLayout;
+
+import javax.swing.JTextField;
+
+public class ViewGetDebt extends View<ControllerGetDebt> {
+	private JTextField t;
+	public ViewGetDebt(FinanceOffice m, ControllerGetDebt c) {
+		super(m, c);
+		// TODO Auto-generated constructor stub
+		this.setLayout(new GridLayout(2,1));
+		t=new JTextField("Type a payer name here: ");
+		this.add(t);
+		
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,4 @@
+
+public interface ModelListener {
+	public abstract void update();
+}

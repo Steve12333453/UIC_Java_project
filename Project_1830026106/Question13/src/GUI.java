@@ -1,0 +1,41 @@
+
+public class GUI {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				FinanceOffice f=new FinanceOffice("UIC FO");
+				Student s=new Student("Steve",2000);
+				f.addPayer(s);
+				try {
+					Employee e=new Employee("Philippe", 2500);
+					f.addPayer(e);
+				} catch (NegativeSalaryException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					FacultyMember fm=new FacultyMember("Leon", 500);
+					f.addPayer(fm);
+				} catch (NegativeSalaryException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Controller c=new Controller(f);
+				ControllerCreate cc=new ControllerCreate(f);
+				ControllerGetDebt cgd=new ControllerGetDebt(f);
+				ControllerPay cp=new ControllerPay(f);
+				ControllerHistory ch=new ControllerHistory(f);
+				ViewSimple v=new ViewSimple(f, c);
+				ViewCreate vc=new ViewCreate(f, cc);
+				ViewGetDebt vgd=new ViewGetDebt(f, cgd);
+				ViewPay vp=new ViewPay(f, cp);
+				ViewHistory vh=new ViewHistory(f, ch);
+			}
+		});
+	}
+}

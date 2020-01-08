@@ -1,0 +1,15 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class ViewSimple extends View implements ModelListener{
+	private FinanceOffice m;
+	private ControllerSimple c;
+	private JLabel label;
+	
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		label.setText("total debt: "+m.totalDebt());
+	}
+}

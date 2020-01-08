@@ -1,0 +1,33 @@
+
+public class Employee extends Person {
+
+	public Employee(String name, int salary) throws NegativeSalaryException {
+		super(name, -salary);
+		// TODO Auto-generated constructor stub
+		if (salary < 0) {
+			throw new NegativeSalaryException("An employee cannot have a negative salary");
+		}
+	}
+
+	/**
+	 * decreases the current salary of the employee by the amount of money given as
+	 * argument to the method
+	 */
+	@Override
+	public void pay(int amount) throws NegativeSalaryException {
+		// TODO Auto-generated method stub
+		int overpay = amount + this.getDebt();
+		if (overpay > 0) {
+			throw new NegativeSalaryException("An employee cannot be overpaid by " + overpay + " yuans!");
+		} else {
+			this.setDebt(amount + this.getDebt());
+		}
+	}
+	public void pay(int amount,int salary){
+		int overpay = amount + this.getDebt();
+		this.setDebt(overpay);
+	}
+	public static void testEmployee() {
+		
+	}
+}

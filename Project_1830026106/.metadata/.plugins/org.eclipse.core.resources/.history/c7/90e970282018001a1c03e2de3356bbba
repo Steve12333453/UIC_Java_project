@@ -1,0 +1,24 @@
+import java.awt.Button;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+public class ViewGetDebt extends View<ControllerGetDebt> {
+	private JTextField t;
+
+	public ViewGetDebt(FinanceOffice m, ControllerGetDebt c) {
+		super(m, c);
+		// TODO Auto-generated constructor stub
+		t=new JTextField("Type a payer name here: ");
+		
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

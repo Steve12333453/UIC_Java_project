@@ -1,0 +1,12 @@
+import javax.swing.JFrame;
+
+public class View<T extends Controller> extends JFrame {
+	protected FinanceOffice m;
+	protected T c;
+	
+	public View(FinanceOffice m, T c) {
+		this.m=m;
+		this.c=c;
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}

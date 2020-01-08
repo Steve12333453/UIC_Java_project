@@ -1,0 +1,45 @@
+import java.awt.Button;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+public class ViewGetDebt extends View<ControllerGetDebt> {
+	private JTextField t;
+	FinanceOffice f=new FinanceOffice("UIC FO");
+	public ViewGetDebt(FinanceOffice m, ControllerGetDebt c) {
+		super(m, c);
+		// TODO Auto-generated constructor stub
+		this.setTitle("View Debt");
+		this.setSize(400, 300);
+		this.setLayout(new GridLayout(2,1));
+		t=new JTextField("Type a payer name here: ");
+		String str=t.getText();
+		this.add(t);
+		Button b=new Button("Tell me the debt");
+		this.add(b);
+		this.setVisible(true);
+		b.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					JOptionPane.showMessageDialog(null, f.getDebt(str));
+				} catch (UnknownPayerException e1) {
+					// TODO Auto-generated catch block
+					System.out.println(e1.getMessage());
+				}
+			}
+		});
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

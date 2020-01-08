@@ -1,0 +1,7 @@
+import javax.swing.JFrame;
+
+public class ViewSample extends JFrame {
+	private FinanceOffice m;
+	private ControllerSimple c;
+	
+}
